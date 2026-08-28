@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIS Intelligent Assistant — patilpranav72</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ============================================================
+             HOME PAGE
+             ============================================================ -->
+        <div class="home-page" id="homePage">
+
+            <div class="hero-section">
+                <div class="hero-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>patilpranav72 — SIH 2026</span>
+                </div>
+                <div class="hero-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1>BIS Intelligent Assistant</h1>
+                <p class="hero-subtitle">AI-Powered Guide to Indian Standards &amp; BIS Services</p>
+                <p class="hero-description">
+                    Your intelligent companion for understanding BIS standards,
+                    certification requirements, testing procedures, and compliance
+                    guidelines — all through simple conversation.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">BIS Standards</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Certification Schemes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Indian Languages</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">AI Assistance</span>
+                    </div>
+                </div>
+                <button class="btn-get-started" id="getStartedBtn">
+                    <i class="fas fa-rocket"></i> Get Started <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="features-section">
+                <h2>Why BIS Intelligent Assistant?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                        <h3>Natural Language</h3>
+                        <p>Ask questions in plain English, Hindi, or Marathi — no technical jargon needed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-search"></i></div>
+                        <h3>Smart Product Search</h3>
+                        <p>Describe your product, and the AI identifies relevant BIS standards instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>Certification Guidance</h3>
+                        <p>Get step-by-step certification requirements, testing procedures, and documentation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-link"></i></div>
+                        <h3>Source-Backed Answers</h3>
+                        <p>Every response includes official BIS source references for verification.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-language"></i></div>
+                        <h3>Multilingual Support</h3>
+                        <p>Switch between English, Hindi, and Marathi — more languages coming soon.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-list-check"></i></div>
+                        <h3>Compliance Checklists</h3>
+                        <p>Auto-generated actionable checklists for manufacturers and importers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="how-it-works">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Describe Your Product</h4>
+                            <p>Type your product name or requirement in simple language.</p>
+                        </div>
+                    </div>
+                    <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>AI Analyzes</h4>
+                            <p>The AI identifies relevant BIS standards and certification requirements.</p>
+                        </div>
+                    </div>
+                    <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Get Answers</h4>
+                            <p>Receive structured information with sources and compliance checklists.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="home-footer">
+                <p>
+                    <i class="fas fa-building"></i> Bureau of Indian Standards (BIS)
+                    | <i class="fas fa-code"></i> Developed by <strong>patilpranav72</strong>
+                </p>
+                <p class="footer-disclaimer">
+                    This is an AI-powered assistant. Always verify with official BIS sources before making regulatory decisions.
+                </p>
+            </footer>
+
+        </div>
+
+        <!-- ============================================================
+             MAIN CHAT PAGE (with Sidebar)
+             ============================================================ -->
+        <div class="main-page" id="mainPage" style="display: none;">
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-logo">
+                        <span class="sidebar-logo-icon">BIS</span>
+                        <span class="sidebar-logo-text">Chats</span>
+                    </div>
+                    <button class="sidebar-toggle" id="sidebarToggle" type="button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <button class="sidebar-new-chat" id="sidebarNewChat" type="button">
+                    <i class="fas fa-plus"></i> New Chat
+                </button>
+                <div class="sidebar-divider"></div>
+                <div class="chat-history-list" id="chatHistoryList"></div>
+                <div class="sidebar-footer">
+                    <div class="sidebar-user">
+                        <i class="fas fa-user-circle"></i>
+                        <span>patilpranav72</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- CHAT CONTENT -->
+            <div class="chat-content">
+
+                <header class="header">
+                    <div class="header-left">
+                        <button class="btn-toggle-sidebar" id="toggleSidebarBtn" type="button">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="logo">
+                            <div class="logo-icon">BIS</div>
+                            <div class="logo-text">
+                                <h1>BIS Intelligent Assistant</h1>
+                                <span>by <strong>patilpranav72</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-back-home" id="backHomeBtn" type="button">
+                            <i class="fas fa-home"></i> Home
+                        </button>
+                        <div class="lang-selector">
+                            <button class="lang-btn active" data-lang="en" type="button">🇬🇧 EN</button>
+                            <button class="lang-btn" data-lang="hi" type="button">🇮🇳 हिंदी</button>
+                            <button class="lang-btn" data-lang="mr" type="button">🇮🇳 मराठी</button>
+                        </div>
+                        <button class="btn-new-chat" id="newChatBtn" type="button">
+                            <i class="fas fa-plus"></i> <span>New Chat</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="dashboard" id="dashboard">
+                    <div class="dashboard-icon"><i class="fas fa-robot"></i></div>
+                    <h2>Ask about BIS Standards</h2>
+                    <p>Describe your product or requirement in simple language. The AI will identify relevant standards, certification requirements, and testing procedures.</p>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-query="I want to manufacture an electric kettle in India. What BIS requirements do I need?" type="button">
+                            <i class="fas fa-plug"></i> Electric Kettle
+                        </button>
+                        <button class="quick-btn" data-query="I want to manufacture a pressure cooker. What BIS requirements do I need to follow?" type="button">
+                            <i class="fas fa-utensils"></i> Pressure Cooker
+                        </button>
+                        <button class="quick-btn" data-query="I want to import LED lamps. What BIS certification do I need?" type="button">
+                            <i class="fas fa-lightbulb"></i> LED Lamps
+                        </button>
+                        <button class="quick-btn" data-query="I am manufacturing children's toys. What BIS standards apply?" type="button">
+                            <i class="fas fa-child"></i> Children's Toys
+                        </button>
+                        <button class="quick-btn" data-query="I want to manufacture steel pipes. What BIS requirements apply?" type="button">
+                            <i class="fas fa-industry"></i> Steel Pipes
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-area" id="chatArea">
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="typing-indicator" id="typingIndicator" hidden>
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Describe your product or requirement..." autocomplete="off" />
+                        <button id="sendBtn" type="button"><i class="fas fa-paper-plane"></i> Send</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
