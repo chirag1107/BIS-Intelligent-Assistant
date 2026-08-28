@@ -1,247 +1,1649 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BIS Intelligent Assistant — patilpranav72</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>BIS Intelligent Assistant</title>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="index.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           APP
+        ========================================================== */
+
+        .app {
+            min-height: 100vh;
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           HOME PAGE
+        ========================================================== */
+
+        .home-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top right, #dbeafe, transparent 35%),
+                radial-gradient(circle at bottom left, #e0e7ff, transparent 35%),
+                #f8fafc;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================== */
+
+        .hero-section {
+            min-height: 680px;
+            padding: 80px 20px 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #dbe3f0;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .hero-badge i {
+            color: #f59e0b;
+        }
+
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 44px;
+            box-shadow: 0 20px 45px rgba(37, 99, 235, 0.25);
+            margin-bottom: 28px;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(38px, 6vw, 72px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: #0f172a;
+            margin-bottom: 18px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 27px);
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            max-width: 760px;
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================== */
+
+        .hero-stats {
+            width: min(900px, 100%);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin: 45px 0;
+        }
+
+        .stat-item {
+            padding: 22px 12px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 28px;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           GET STARTED
+        ========================================================== */
+
+        .btn-get-started {
+            border: none;
+            border-radius: 14px;
+            padding: 17px 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
+            transition: 0.25s ease;
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(37, 99, 235, 0.35);
+        }
+
+
+        /* =========================================================
+           FEATURES
+        ========================================================== */
+
+        .features-section,
+        .how-it-works {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .features-section h2,
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 34px;
+            color: #0f172a;
+            margin-bottom: 45px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 22px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+            transition: 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+            margin-bottom: 10px;
+            color: #172033;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           HOW IT WORKS
+        ========================================================== */
+
+        .steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            max-width: 320px;
+            padding: 25px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            gap: 18px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .step-number {
+            min-width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2563eb;
+            color: white;
+            font-weight: 800;
+        }
+
+        .step-content h4 {
+            margin-bottom: 8px;
+            color: #172033;
+        }
+
+        .step-content p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .step-arrow {
+            color: #2563eb;
+            font-size: 22px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================== */
+
+        .home-footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0f172a;
+            color: #cbd5e1;
+        }
+
+        .home-footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+
+        /* =========================================================
+           MAIN CHAT PAGE
+        ========================================================== */
+
+        .main-page {
+            min-height: 100vh;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================== */
+
+        .header {
+            min-height: 75px;
+            padding: 12px 25px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .logo-text h1 {
+            font-size: 17px;
+            color: #0f172a;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header button {
+            border: 1px solid #dbe3ef;
+            background: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .header button:hover {
+            background: #f1f5f9;
+        }
+
+
+        /* =========================================================
+           LANGUAGE
+        ========================================================== */
+
+        .lang-selector {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================== */
+
+        .dashboard {
+            max-width: 900px;
+            width: calc(100% - 40px);
+            margin: 60px auto 30px;
+            text-align: center;
+        }
+
+        .dashboard-icon {
+            width: 75px;
+            height: 75px;
+            margin: auto auto 20px;
+            border-radius: 22px;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .dashboard h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .dashboard > p {
+            color: #64748b;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           QUICK ACTIONS
+        ========================================================== */
+
+        .quick-actions {
+            margin-top: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quick-btn {
+            border: 1px solid #dbe3ef;
+            background: white;
+            color: #334155;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .quick-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .quick-btn i {
+            margin-right: 7px;
+        }
+
+
+        /* =========================================================
+           CHAT AREA
+        ========================================================== */
+
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            padding-bottom: 25px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+
+        /* =========================================================
+           CHAT MESSAGE
+        ========================================================== */
+
+        .message {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 14px 17px;
+            border-radius: 16px;
+            line-height: 1.6;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        .message.assistant .message-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user .message-content {
+            background: #2563eb;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+
+        /* =========================================================
+           TYPING
+        ========================================================== */
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 0;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typing 1.2s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+
+            30% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+
+        /* =========================================================
+           CHAT INPUT
+        ========================================================== */
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            background: white;
+            border: 1px solid #dbe3ef;
+            padding: 10px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px;
+            font-size: 14px;
+            background: transparent;
+        }
+
+        .chat-input-area button {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        .chat-input-area button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================== */
+
+        @media (max-width: 900px) {
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .step {
+                width: 100%;
+                max-width: 600px;
+            }
+
+            .step-arrow {
+                transform: rotate(90deg);
+            }
+
+            .header {
+                flex-wrap: wrap;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .hero-section {
+                padding-top: 50px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 12px 15px;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .lang-selector {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .dashboard h2 {
+                font-size: 27px;
+            }
+
+            .message-content {
+                max-width: 90%;
+            }
+
+            .chat-input-area {
+                position: sticky;
+                bottom: 10px;
+            }
+        }
+
+
+        @media (max-width: 450px) {
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 15px 8px;
+            }
+
+            .stat-number {
+                font-size: 22px;
+            }
+
+            .btn-get-started {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .chat-input-area button span {
+                display: none;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <div class="app">
+<div class="app">
 
-        <!-- ============================================================
-             HOME PAGE
-             ============================================================ -->
-        <div class="home-page" id="homePage">
+    <!-- =========================================================
+         HOME PAGE
+    ========================================================== -->
 
-            <div class="hero-section">
-                <div class="hero-badge">
-                    <i class="fas fa-crown"></i>
-                    <span>patilpranav72 — SIH 2026</span>
-                </div>
-                <div class="hero-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h1>BIS Intelligent Assistant</h1>
-                <p class="hero-subtitle">AI-Powered Guide to Indian Standards &amp; BIS Services</p>
-                <p class="hero-description">
-                    Your intelligent companion for understanding BIS standards,
-                    certification requirements, testing procedures, and compliance
-                    guidelines — all through simple conversation.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">BIS Standards</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Certification Schemes</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Indian Languages</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">AI Assistance</span>
-                    </div>
-                </div>
-                <button class="btn-get-started" id="getStartedBtn">
-                    <i class="fas fa-rocket"></i> Get Started <i class="fas fa-arrow-right"></i>
-                </button>
+    <section class="home-page" id="homePage">
+
+        <div class="hero-section">
+
+            <!-- Changed heading -->
+            <div class="hero-badge">
+                <i class="fas fa-crown"></i>
+                <span>patilpranav72</span>
             </div>
 
-            <div class="features-section">
-                <h2>Why BIS Intelligent Assistant?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-comments"></i></div>
-                        <h3>Natural Language</h3>
-                        <p>Ask questions in plain English, Hindi, or Marathi — no technical jargon needed.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-search"></i></div>
-                        <h3>Smart Product Search</h3>
-                        <p>Describe your product, and the AI identifies relevant BIS standards instantly.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
-                        <h3>Certification Guidance</h3>
-                        <p>Get step-by-step certification requirements, testing procedures, and documentation.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-link"></i></div>
-                        <h3>Source-Backed Answers</h3>
-                        <p>Every response includes official BIS source references for verification.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-language"></i></div>
-                        <h3>Multilingual Support</h3>
-                        <p>Switch between English, Hindi, and Marathi — more languages coming soon.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-list-check"></i></div>
-                        <h3>Compliance Checklists</h3>
-                        <p>Auto-generated actionable checklists for manufacturers and importers.</p>
-                    </div>
-                </div>
+            <div class="hero-icon">
+                <i class="fas fa-robot"></i>
             </div>
 
-            <div class="how-it-works">
-                <h2>How It Works</h2>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Describe Your Product</h4>
-                            <p>Type your product name or requirement in simple language.</p>
-                        </div>
-                    </div>
-                    <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>AI Analyzes</h4>
-                            <p>The AI identifies relevant BIS standards and certification requirements.</p>
-                        </div>
-                    </div>
-                    <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Get Answers</h4>
-                            <p>Receive structured information with sources and compliance checklists.</p>
-                        </div>
-                    </div>
+            <h1>BIS Intelligent Assistant</h1>
+
+            <p class="hero-subtitle">
+                AI-Powered Guide to Indian Standards &amp; BIS Services
+            </p>
+
+            <p class="hero-description">
+                Your intelligent companion for understanding BIS standards,
+                certification requirements, testing procedures, and compliance
+                guidelines — all through simple conversation.
+            </p>
+
+            <div class="hero-stats">
+
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">BIS Standards</span>
                 </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Certification Schemes</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Indian Languages</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Assistance</span>
+                </div>
+
             </div>
 
-            <footer class="home-footer">
-                <p>
-                    <i class="fas fa-building"></i> Bureau of Indian Standards (BIS)
-                    | <i class="fas fa-code"></i> Developed by <strong>patilpranav72</strong>
-                </p>
-                <p class="footer-disclaimer">
-                    This is an AI-powered assistant. Always verify with official BIS sources before making regulatory decisions.
-                </p>
-            </footer>
+            <button
+                type="button"
+                class="btn-get-started"
+                id="getStartedBtn"
+            >
+                <i class="fas fa-rocket"></i>
+                <span>Get Started</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
 
         </div>
 
-        <!-- ============================================================
-             MAIN CHAT PAGE (with Sidebar)
-             ============================================================ -->
-        <div class="main-page" id="mainPage" style="display: none;">
 
-            <!-- SIDEBAR -->
-            <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
-                    <div class="sidebar-logo">
-                        <span class="sidebar-logo-icon">BIS</span>
-                        <span class="sidebar-logo-text">Chats</span>
+        <!-- =====================================================
+             FEATURES
+        ====================================================== -->
+
+        <section class="features-section">
+
+            <h2>Why BIS Intelligent Assistant?</h2>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
                     </div>
-                    <button class="sidebar-toggle" id="sidebarToggle" type="button">
-                        <i class="fas fa-bars"></i>
+
+                    <h3>Natural Language</h3>
+
+                    <p>
+                        Ask questions in plain English, Hindi, or Marathi —
+                        no technical jargon needed.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+
+                    <h3>Smart Product Search</h3>
+
+                    <p>
+                        Describe your product, and the AI identifies relevant
+                        BIS standards instantly.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+
+                    <h3>Certification Guidance</h3>
+
+                    <p>
+                        Get step-by-step certification requirements,
+                        testing procedures, and documentation.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+
+                    <h3>Source-Backed Answers</h3>
+
+                    <p>
+                        Every response includes official BIS source
+                        references for verification.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+
+                    <h3>Multilingual Support</h3>
+
+                    <p>
+                        Switch between English, Hindi, and Marathi —
+                        more languages coming soon.
+                    </p>
+                </div>
+
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+
+                    <h3>Compliance Checklists</h3>
+
+                    <p>
+                        Auto-generated actionable checklists for
+                        manufacturers and importers.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HOW IT WORKS
+        ====================================================== -->
+
+        <section class="how-it-works">
+
+            <h2>How It Works</h2>
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">1</div>
+
+                    <div class="step-content">
+                        <h4>Describe Your Product</h4>
+
+                        <p>
+                            Type your product name or requirement
+                            in simple language.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">2</div>
+
+                    <div class="step-content">
+                        <h4>AI Analyzes</h4>
+
+                        <p>
+                            The AI identifies relevant BIS standards
+                            and certification requirements.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">3</div>
+
+                    <div class="step-content">
+                        <h4>Get Answers</h4>
+
+                        <p>
+                            Receive structured information with sources
+                            and compliance checklists.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="home-footer">
+
+            <p>
+                <i class="fas fa-building"></i>
+                Bureau of Indian Standards (BIS)
+                |
+                <i class="fas fa-code"></i>
+                SIH 2026 — Team A
+            </p>
+
+            <p class="footer-disclaimer">
+                This is an AI-powered assistant. Always verify with
+                official BIS sources before making regulatory decisions.
+            </p>
+
+        </footer>
+
+    </section>
+
+
+    <!-- =========================================================
+         CHAT PAGE
+    ========================================================== -->
+
+    <section
+        class="main-page"
+        id="mainPage"
+        style="display: none;"
+    >
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    BIS
+                </div>
+
+                <div class="logo-text">
+
+                    <h1>BIS Intelligent Assistant</h1>
+
+                    <span>
+                        AI-Powered Guide to Indian Standards
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <!-- Home Button -->
+
+                <button
+                    type="button"
+                    class="btn-back-home"
+                    id="backHomeBtn"
+                >
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+
+
+                <!-- Languages -->
+
+                <div class="lang-selector">
+
+                    <button
+                        type="button"
+                        class="lang-btn active"
+                        data-lang="en"
+                    >
+                        🇬🇧 EN
                     </button>
+
+                    <button
+                        type="button"
+                        class="lang-btn"
+                        data-lang="hi"
+                    >
+                        🇮🇳 हिंदी
+                    </button>
+
+                    <button
+                        type="button"
+                        class="lang-btn"
+                        data-lang="mr"
+                    >
+                        🇮🇳 मराठी
+                    </button>
+
                 </div>
-                <button class="sidebar-new-chat" id="sidebarNewChat" type="button">
-                    <i class="fas fa-plus"></i> New Chat
+
+
+                <!-- New Chat -->
+
+                <button
+                    type="button"
+                    class="btn-new-chat"
+                    id="newChatBtn"
+                >
+                    <i class="fas fa-plus"></i>
+                    <span>New Chat</span>
                 </button>
-                <div class="sidebar-divider"></div>
-                <div class="chat-history-list" id="chatHistoryList"></div>
-                <div class="sidebar-footer">
-                    <div class="sidebar-user">
-                        <i class="fas fa-user-circle"></i>
-                        <span>patilpranav72</span>
-                    </div>
-                </div>
-            </aside>
-
-            <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-            <!-- CHAT CONTENT -->
-            <div class="chat-content">
-
-                <header class="header">
-                    <div class="header-left">
-                        <button class="btn-toggle-sidebar" id="toggleSidebarBtn" type="button">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        <div class="logo">
-                            <div class="logo-icon">BIS</div>
-                            <div class="logo-text">
-                                <h1>BIS Intelligent Assistant</h1>
-                                <span>by <strong>patilpranav72</strong></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn-back-home" id="backHomeBtn" type="button">
-                            <i class="fas fa-home"></i> Home
-                        </button>
-                        <div class="lang-selector">
-                            <button class="lang-btn active" data-lang="en" type="button">🇬🇧 EN</button>
-                            <button class="lang-btn" data-lang="hi" type="button">🇮🇳 हिंदी</button>
-                            <button class="lang-btn" data-lang="mr" type="button">🇮🇳 मराठी</button>
-                        </div>
-                        <button class="btn-new-chat" id="newChatBtn" type="button">
-                            <i class="fas fa-plus"></i> <span>New Chat</span>
-                        </button>
-                    </div>
-                </header>
-
-                <div class="dashboard" id="dashboard">
-                    <div class="dashboard-icon"><i class="fas fa-robot"></i></div>
-                    <h2>Ask about BIS Standards</h2>
-                    <p>Describe your product or requirement in simple language. The AI will identify relevant standards, certification requirements, and testing procedures.</p>
-                    <div class="quick-actions">
-                        <button class="quick-btn" data-query="I want to manufacture an electric kettle in India. What BIS requirements do I need?" type="button">
-                            <i class="fas fa-plug"></i> Electric Kettle
-                        </button>
-                        <button class="quick-btn" data-query="I want to manufacture a pressure cooker. What BIS requirements do I need to follow?" type="button">
-                            <i class="fas fa-utensils"></i> Pressure Cooker
-                        </button>
-                        <button class="quick-btn" data-query="I want to import LED lamps. What BIS certification do I need?" type="button">
-                            <i class="fas fa-lightbulb"></i> LED Lamps
-                        </button>
-                        <button class="quick-btn" data-query="I am manufacturing children's toys. What BIS standards apply?" type="button">
-                            <i class="fas fa-child"></i> Children's Toys
-                        </button>
-                        <button class="quick-btn" data-query="I want to manufacture steel pipes. What BIS requirements apply?" type="button">
-                            <i class="fas fa-industry"></i> Steel Pipes
-                        </button>
-                    </div>
-                </div>
-
-                <div class="chat-area" id="chatArea">
-                    <div class="chat-messages" id="chatMessages"></div>
-                    <div class="typing-indicator" id="typingIndicator" hidden>
-                        <span></span><span></span><span></span>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="chatInput" placeholder="Describe your product or requirement..." autocomplete="off" />
-                        <button id="sendBtn" type="button"><i class="fas fa-paper-plane"></i> Send</button>
-                    </div>
-                </div>
 
             </div>
 
-        </div>
+        </header>
 
-    </div>
 
-    <script src="script.js"></script>
+        <!-- DASHBOARD -->
+
+        <main
+            class="dashboard"
+            id="dashboard"
+        >
+
+            <div class="dashboard-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+
+            <h2>Ask about BIS Standards</h2>
+
+            <p>
+                Describe your product or requirement in simple language.
+                The AI will identify relevant standards, certification
+                requirements, and testing procedures.
+            </p>
+
+
+            <div class="quick-actions">
+
+                <button
+                    type="button"
+                    class="quick-btn"
+                    data-query="I want to manufacture an electric kettle in India. What BIS requirements do I need?"
+                >
+                    <i class="fas fa-plug"></i>
+                    Electric Kettle
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-btn"
+                    data-query="I want to manufacture a pressure cooker. What BIS requirements do I need to follow?"
+                >
+                    <i class="fas fa-utensils"></i>
+                    Pressure Cooker
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-btn"
+                    data-query="I want to import LED lamps. What BIS certification do I need?"
+                >
+                    <i class="fas fa-lightbulb"></i>
+                    LED Lamps
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-btn"
+                    data-query="I am manufacturing children's toys. What BIS standards apply?"
+                >
+                    <i class="fas fa-child"></i>
+                    Children's Toys
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-btn"
+                    data-query="I want to manufacture steel pipes. What BIS requirements apply?"
+                >
+                    <i class="fas fa-industry"></i>
+                    Steel Pipes
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- CHAT -->
+
+        <section class="chat-area">
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            ></div>
+
+
+            <!-- Typing -->
+
+            <div
+                class="typing-indicator"
+                id="typingIndicator"
+                style="display: none;"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+            <!-- Input -->
+
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Describe your product or requirement..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="sendBtn"
+                >
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Send</span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+    // =========================================================
+    // ELEMENTS
+    // =========================================================
+
+    const homePage = document.getElementById("homePage");
+    const mainPage = document.getElementById("mainPage");
+
+    const getStartedBtn = document.getElementById("getStartedBtn");
+    const backHomeBtn = document.getElementById("backHomeBtn");
+
+    const newChatBtn = document.getElementById("newChatBtn");
+
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+
+    const chatMessages = document.getElementById("chatMessages");
+    const dashboard = document.getElementById("dashboard");
+
+    const typingIndicator =
+        document.getElementById("typingIndicator");
+
+    const quickButtons =
+        document.querySelectorAll(".quick-btn");
+
+    const languageButtons =
+        document.querySelectorAll(".lang-btn");
+
+
+    // =========================================================
+    // GET STARTED
+    // =========================================================
+
+    getStartedBtn.addEventListener("click", function () {
+
+        homePage.style.display = "none";
+        mainPage.style.display = "flex";
+
+        chatInput.focus();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    // =========================================================
+    // BACK TO HOME
+    // =========================================================
+
+    backHomeBtn.addEventListener("click", function () {
+
+        mainPage.style.display = "none";
+        homePage.style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    // =========================================================
+    // NEW CHAT
+    // =========================================================
+
+    newChatBtn.addEventListener("click", function () {
+
+        chatMessages.innerHTML = "";
+
+        dashboard.style.display = "block";
+
+        chatInput.value = "";
+
+        chatInput.focus();
+
+    });
+
+
+    // =========================================================
+    // SEND MESSAGE
+    // =========================================================
+
+    function sendMessage(message) {
+
+        message = message.trim();
+
+        if (message === "") {
+            return;
+        }
+
+        // Hide dashboard after first message
+        dashboard.style.display = "none";
+
+
+        // User message
+        addMessage(message, "user");
+
+
+        // Clear input
+        chatInput.value = "";
+
+
+        // Show typing
+        typingIndicator.style.display = "flex";
+
+
+        // Simulated AI response
+        setTimeout(function () {
+
+            typingIndicator.style.display = "none";
+
+            const response = generateResponse(message);
+
+            addMessage(response, "assistant");
+
+        }, 1000);
+
+    }
+
+
+    // =========================================================
+    // ADD MESSAGE
+    // =========================================================
+
+    function addMessage(text, type) {
+
+        const messageDiv = document.createElement("div");
+
+        messageDiv.className = "message " + type;
+
+        const contentDiv =
+            document.createElement("div");
+
+        contentDiv.className = "message-content";
+
+        contentDiv.textContent = text;
+
+        messageDiv.appendChild(contentDiv);
+
+        chatMessages.appendChild(messageDiv);
+
+        chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+
+    }
+
+
+    // =========================================================
+    // SEND BUTTON
+    // =========================================================
+
+    sendBtn.addEventListener("click", function () {
+
+        sendMessage(chatInput.value);
+
+    });
+
+
+    // =========================================================
+    // ENTER KEY
+    // =========================================================
+
+    chatInput.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            sendMessage(chatInput.value);
+
+        }
+
+    });
+
+
+    // =========================================================
+    // QUICK BUTTONS
+    // =========================================================
+
+    quickButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const query =
+                button.getAttribute("data-query");
+
+            sendMessage(query);
+
+        });
+
+    });
+
+
+    // =========================================================
+    // LANGUAGE BUTTONS
+    // =========================================================
+
+    languageButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            languageButtons.forEach(function (btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+            const language =
+                button.getAttribute("data-lang");
+
+            chatInput.placeholder =
+                getPlaceholder(language);
+
+        });
+
+    });
+
+
+    // =========================================================
+    // LANGUAGE PLACEHOLDER
+    // =========================================================
+
+    function getPlaceholder(language) {
+
+        if (language === "hi") {
+
+            return "अपने उत्पाद या आवश्यकता के बारे में लिखें...";
+
+        }
+
+        if (language === "mr") {
+
+            return "तुमच्या उत्पादनाबद्दल किंवा आवश्यकतेबद्दल लिहा...";
+
+        }
+
+        return "Describe your product or requirement...";
+
+    }
+
+
+    // =========================================================
+    // DEMO AI RESPONSE
+    // =========================================================
+
+    function generateResponse(message) {
+
+        const text = message.toLowerCase();
+
+
+        // Electric kettle
+
+        if (
+            text.includes("kettle") ||
+            text.includes("electric kettle")
+        ) {
+
+            return `For an electric kettle, you should verify the applicable BIS product standard and whether the product is covered under a mandatory certification requirement.
+
+Recommended process:
+
+1. Identify the exact product category.
+2. Find the applicable Indian Standard.
+3. Check the current BIS certification requirements.
+4. Complete the required product testing.
+5. Prepare the required technical documents.
+6. Apply through the appropriate BIS certification process.
+
+Always verify the latest requirements directly from official BIS sources before manufacturing or importing.`
+
+        }
+
+
+        // Pressure cooker
+
+        if (
+            text.includes("pressure cooker") ||
+            text.includes("cooker")
+        ) {
+
+            return `For a pressure cooker, first identify the applicable BIS Indian Standard for your specific product.
+
+Typical compliance steps include:
+
+1. Identify the applicable standard.
+2. Review product specifications.
+3. Conduct required testing.
+4. Prepare manufacturing and quality documents.
+5. Apply for the applicable BIS certification.
+6. Maintain compliance with surveillance and testing requirements.
+
+The exact requirements can depend on the product type and applicable regulations.`
+
+        }
+
+
+        // LED
+
+        if (
+            text.includes("led") ||
+            text.includes("lamp")
+        ) {
+
+            return `For LED lamps, determine the exact product type and check the latest BIS requirements applicable to that category.
+
+You should verify:
+
+• Applicable Indian Standard
+• Product testing requirements
+• BIS certification or registration requirement
+• Manufacturer documentation
+• Labelling and marking requirements
+• Import requirements, if applicable
+
+Requirements can change, so verify the current information with official BIS sources.`
+
+        }
+
+
+        // Toys
+
+        if (
+            text.includes("toy") ||
+            text.includes("toys") ||
+            text.includes("children")
+        ) {
+
+            return `For children's toys, BIS requirements can depend on the type and characteristics of the toy.
+
+The general compliance workflow is:
+
+1. Identify the toy category.
+2. Determine the applicable Indian Standard.
+3. Check mandatory certification requirements.
+4. Conduct required safety testing.
+5. Prepare the required documents.
+6. Complete the applicable BIS process.
+
+For regulatory decisions, always verify the latest BIS requirements.`
+
+        }
+
+
+        // Steel pipes
+
+        if (
+            text.includes("steel") ||
+            text.includes("pipe") ||
+            text.includes("pipes")
+        ) {
+
+            return `For steel pipes, the applicable BIS requirements depend on the specific type, grade, dimensions, intended use, and applicable Indian Standard.
+
+You should determine:
+
+• Product classification
+• Applicable Indian Standard
+• Required tests
+• Quality-control requirements
+• Certification requirements
+• Marking and documentation requirements
+
+The exact standard should be verified against the current BIS database and regulations.`
+
+        }
+
+
+        // General BIS response
+
+        return `I understand that you are asking about BIS requirements for:
+
+"${message}"
+
+To provide a reliable BIS compliance answer, the product should first be classified correctly.
+
+The typical process is:
+
+1. Identify the product.
+2. Determine the applicable Indian Standard.
+3. Check whether certification or registration is mandatory.
+4. Identify required testing.
+5. Prepare documentation.
+6. Follow the applicable BIS application process.
+7. Verify the latest requirements from official BIS sources.
+
+Please provide the exact product name, model/type, and whether you are manufacturing or importing it.`;
+
+    }
+
+
+    // =========================================================
+    // INITIAL MESSAGE
+    // =========================================================
+
+    console.log("BIS Intelligent Assistant loaded successfully.");
+
+</script>
+
 </body>
 </html>
