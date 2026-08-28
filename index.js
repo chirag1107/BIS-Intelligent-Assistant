@@ -274,7 +274,7 @@ function createNewChat() {
 }
 
 // ============================================================
-//  CHAT NAME UPDATER - AUTOMATICALLY SETS CHAT NAME
+//  CHAT NAME UPDATER
 // ============================================================
 
 function getProductNameFromQuery(query) {
@@ -808,8 +808,9 @@ console.log("🚀 BIS Intelligent Assistant Ready!");
 console.log("📚 Products in Knowledge Base:", Object.keys(BIS_KNOWLEDGE).length);
 console.log("🌍 Languages:", Object.keys(TRANSLATIONS).join(", "));
 console.log("💡 Tip: Chat names automatically update based on your product!");
-console.log("💾 Chats are saved automatically in your browser!");
 
+// Initialize the app
+loadChatHistory();
 if (chatHistory.length === 0) {
     createNewChat();
 } else {
