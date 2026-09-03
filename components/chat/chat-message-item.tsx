@@ -14,6 +14,7 @@ import {
   ListTodo,
   Milestone,
   BookOpen,
+  FileDown,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,10 +33,48 @@ export function ChatMessageItem({
   onToggleChecklist,
 }: ChatMessageItemProps) {
   const [copied, setCopied] = useState(false);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
 
   const isUser = message.type === "user";
   const standard = message.standardData;
+
+  const handleDownloadPdf = async () => {
+    if (!standard) return;
+    try {
+      setDownloadingPdf(true);
+      const res = await fetch("http://localhost:8000/api/generate-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_name: standard.name,
+          standard: standard.standard,
+          standard_full: standard.standard_full,
+          scheme: standard.scheme,
+          mandatory: standard.certification_status?.includes("MANDATORY") ?? true,
+          testing: standard.testing,
+          documents: standard.documents,
+          process: standard.process,
+          source_url: standard.source_url,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Backend PDF generation failed");
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `BIS_Compliance_${standard.name.replace(/\s+/g, "_")}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("PDF download error:", err);
+    } finally {
+      setDownloadingPdf(false);
+    }
+  };
 
   const handleCopy = () => {
     if (!message.text && !standard) return;
@@ -96,6 +135,20 @@ Source: ${standard.source_url}`;
             </div>
 
             <div className="flex items-center gap-2">
+              {standard && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleDownloadPdf}
+                  disabled={downloadingPdf}
+                  className="h-7 px-2.5 text-[11px] font-semibold text-bis-navy dark:text-blue-300 border-bis-navy/20 hover:bg-bis-navy/5 gap-1.5 rounded-lg shadow-2xs"
+                  title="Download Official Bureau of Indian Standards Compliance Advisory Dossier (PDF)"
+                >
+                  <FileDown className="w-3.5 h-3.5 text-red-600" />
+                  <span>{downloadingPdf ? "Generating..." : "Download PDF"}</span>
+                </Button>
+              )}
+
               <Button
                 variant="ghost"
                 size="sm"
