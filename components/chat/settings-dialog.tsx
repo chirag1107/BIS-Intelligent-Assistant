@@ -17,10 +17,6 @@ import {
   Shield,
   Check,
   Sparkles,
-  Cpu,
-  Database,
-  FileText,
-  Zap,
 } from "lucide-react";
 
 interface SettingsDialogProps {
@@ -163,55 +159,7 @@ export function SettingsDialog({
             </div>
           </div>
 
-          {/* 2. Intelligent Architecture & Engine Card */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
-                <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                <span>AI & Backend Architecture</span>
-              </label>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Active</span>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs">
-              <div className="flex items-center gap-2 p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
-                <Zap className="w-4 h-4 text-amber-500 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10px] text-slate-400">Backend API</div>
-                  <div className="font-bold text-slate-800 dark:text-slate-200 truncate">FastAPI (Python)</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
-                <Database className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10px] text-slate-400">Vector DB & RAG</div>
-                  <div className="font-bold text-slate-800 dark:text-slate-200 truncate">ChromaDB + LlamaIndex</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
-                <Sparkles className="w-4 h-4 text-purple-500 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10px] text-slate-400">AI Model</div>
-                  <div className="font-bold text-slate-800 dark:text-slate-200 truncate">Gemini 1.5 Flash</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
-                <FileText className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10px] text-slate-400">PDF Generator</div>
-                  <div className="font-bold text-slate-800 dark:text-slate-200 truncate">ReportLab Engine</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 3. Chat Data Management */}
+          {/* 2. Chat Data Management */}
           {onClearAllChats && (
             <div className="p-3.5 rounded-2xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/40 flex items-center justify-between gap-3">
               <div>
