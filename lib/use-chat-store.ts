@@ -141,7 +141,7 @@ export function useChatStore() {
   );
 
   const sendMessage = useCallback(
-    async (text: string) => {
+    async (text: string) => { 
       const trimmed = text.trim();
       if (!trimmed || isTyping) return;
 

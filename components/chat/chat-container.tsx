@@ -6,6 +6,8 @@ import { ChatSidebar } from "./chat-sidebar";
 import { ChatDashboard } from "./chat-dashboard";
 import { ChatMessages } from "./chat-messages";
 import { ChatInput } from "./chat-input";
+import { StandardsDialog } from "./standards-dialog";
+import { SettingsDialog } from "./settings-dialog";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useChatStore } from "@/lib/use-chat-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -34,6 +36,8 @@ export function ChatContainer({ onBackHome, initialQuery }: ChatContainerProps) 
 
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [standardsDialogOpen, setStandardsDialogOpen] = useState(false);
+  const [settingsDialogOpen, setSettingsDialogOpen] = useState(false);
 
   // Auto-send initial query if launched from hero prompt chip
   const initialSentRef = React.useRef(false);
@@ -68,6 +72,7 @@ export function ChatContainer({ onBackHome, initialQuery }: ChatContainerProps) 
             onNewChat={createNewChat}
             onDeleteSession={deleteChat}
             onToggleCollapse={() => setIsSidebarCollapsed(true)}
+            onOpenSettings={() => setSettingsDialogOpen(true)}
           />
         </div>
       </div>
@@ -82,6 +87,10 @@ export function ChatContainer({ onBackHome, initialQuery }: ChatContainerProps) 
             onNewChat={createNewChat}
             onDeleteSession={deleteChat}
             onCloseMobile={() => setMobileSidebarOpen(false)}
+            onOpenSettings={() => {
+              setMobileSidebarOpen(false);
+              setSettingsDialogOpen(true);
+            }}
           />
         </SheetContent>
       </Sheet>
@@ -93,6 +102,8 @@ export function ChatContainer({ onBackHome, initialQuery }: ChatContainerProps) 
           onLanguageChange={setLanguage}
           onBackHome={onBackHome}
           onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
+          onOpenStandards={() => setStandardsDialogOpen(true)}
+          onOpenSettings={() => setSettingsDialogOpen(true)}
           isSidebarCollapsed={isSidebarCollapsed}
           onToggleSidebar={() => setIsSidebarCollapsed((prev) => !prev)}
           onClearAllChats={clearAllChats}
@@ -107,21 +118,38 @@ export function ChatContainer({ onBackHome, initialQuery }: ChatContainerProps) 
               onToggleChecklist={toggleChecklistItem}
             />
           ) : (
-            <ScrollArea className="flex-1 px-4">
+            <div className="flex-1 flex flex-col items-center justify-center min-h-0 overflow-y-auto px-4 py-4">
               <ChatDashboard
                 language={language}
                 onSelectPrompt={(query) => sendMessage(query)}
               />
-            </ScrollArea>
+            </div>
           )}
 
           <ChatInput
             onSendMessage={(text) => sendMessage(text)}
+            onOpenStandards={() => setStandardsDialogOpen(true)}
             disabled={isTyping}
             language={language}
           />
         </main>
       </div>
+
+      {/* Dedicated Indian Standards Directory & Inquiries Modal */}
+      <StandardsDialog
+        open={standardsDialogOpen}
+        onOpenChange={setStandardsDialogOpen}
+        onSelectPrompt={(query) => sendMessage(query)}
+      />
+
+      {/* Settings & User Account Modal */}
+      <SettingsDialog
+        open={settingsDialogOpen}
+        onOpenChange={setSettingsDialogOpen}
+        language={language}
+        onLanguageChange={setLanguage}
+        onClearAllChats={clearAllChats}
+      />
     </div>
   );
 }

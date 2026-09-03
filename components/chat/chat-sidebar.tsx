@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { Plus, MessageSquare, Trash2, Shield, User, PanelLeftClose } from "lucide-react";
+import { Plus, MessageSquare, Trash2, Shield, User, PanelLeftClose, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { ChatSession } from "@/types";
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/lib/use-auth-store";
 
 interface ChatSidebarProps {
   sessions: ChatSession[];
@@ -16,6 +17,7 @@ interface ChatSidebarProps {
   onDeleteSession: (id: string) => void;
   onCloseMobile?: () => void;
   onToggleCollapse?: () => void;
+  onOpenSettings?: () => void;
 }
 
 export function ChatSidebar({
@@ -26,7 +28,9 @@ export function ChatSidebar({
   onDeleteSession,
   onCloseMobile,
   onToggleCollapse,
+  onOpenSettings,
 }: ChatSidebarProps) {
+  const { user } = useAuthStore();
   return (
     <aside className="flex flex-col h-full w-full bg-slate-900 text-slate-100 border-r border-slate-800">
       {/* Sidebar Header */}
@@ -132,19 +136,35 @@ export function ChatSidebar({
 
       <Separator className="bg-slate-800/80" />
 
-      {/* Sidebar Footer */}
+      {/* Sidebar Footer: Connected to User Profile / Authentication */}
       <div className="p-3 bg-slate-950/60">
-        <div className="flex items-center justify-between rounded-xl p-2 bg-slate-900/80 border border-slate-800/60 text-xs text-slate-300">
-          <div className="flex items-center gap-2 min-w-0">
-            <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 border border-slate-700">
-              <User className="w-4 h-4" />
-            </div>
+        <div
+          onClick={onOpenSettings}
+          className="flex items-center justify-between rounded-xl p-2.5 bg-slate-900/90 border border-slate-800/80 hover:border-blue-500/60 hover:bg-slate-800/80 text-xs text-slate-300 transition-all cursor-pointer group shadow-2xs"
+          title={user.isLoggedIn ? "Manage account & settings" : "Click to Sign In"}
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            {user.isLoggedIn ? (
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-bis-navy via-blue-600 to-bis-saffron flex items-center justify-center text-white font-black text-xs shadow-xs">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+            ) : (
+              <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
+                <LogIn className="w-3.5 h-3.5 text-blue-400" />
+              </div>
+            )}
+
             <div className="truncate">
-              <p className="font-semibold text-white text-[11px] truncate">SIH Participant</p>
-              <p className="text-[10px] text-blue-400 font-bold tracking-wider">LYNOX</p>
+              <p className="font-semibold text-white text-[11px] truncate group-hover:text-blue-400 transition-colors">
+                {user.isLoggedIn ? user.name : "Guest User"}
+              </p>
+              <p className="text-[10px] text-slate-400 truncate">
+                {user.isLoggedIn ? user.organization : "Click to Sign In"}
+              </p>
             </div>
           </div>
-          <Shield className="w-4 h-4 text-bis-saffron flex-shrink-0" />
+
+          <Shield className="w-4 h-4 text-bis-saffron flex-shrink-0 group-hover:scale-110 transition-transform" />
         </div>
       </div>
     </aside>

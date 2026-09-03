@@ -94,3 +94,133 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 116, 139, 0.6);
 }
+
+/* AI Bot Moving Animation Keyframes */
+@keyframes float-smooth {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulse-radar-1 {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.75;
+  }
+  60% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-radar-2 {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.05);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-aurora {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-particle-1 {
+  0% {
+    transform: rotate(0deg) translateX(56px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(56px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-particle-2 {
+  0% {
+    transform: rotate(180deg) translateX(56px) rotate(-180deg);
+  }
+  100% {
+    transform: rotate(540deg) translateX(56px) rotate(-540deg);
+  }
+}
+
+@keyframes core-glow {
+  0%, 100% {
+    box-shadow: 0 10px 30px -5px rgba(30, 64, 175, 0.4), 0 0 20px rgba(255, 153, 51, 0.25);
+  }
+  50% {
+    box-shadow: 0 15px 45px -5px rgba(30, 64, 175, 0.65), 0 0 35px rgba(255, 153, 51, 0.45);
+  }
+}
+
+.animate-float-smooth {
+  animation: float-smooth 4s ease-in-out infinite;
+}
+
+.animate-pulse-radar-1 {
+  animation: pulse-radar-1 3.2s cubic-bezier(0.1, 0.6, 0.3, 1) infinite;
+}
+
+.animate-pulse-radar-2 {
+  animation: pulse-radar-2 3.2s cubic-bezier(0.1, 0.6, 0.3, 1) infinite 1.4s;
+}
+
+.animate-spin-aurora {
+  animation: spin-aurora 14s linear infinite;
+}
+
+.animate-orbit-1 {
+  animation: orbit-particle-1 5s linear infinite;
+}
+
+.animate-orbit-2 {
+  animation: orbit-particle-2 5s linear infinite;
+}
+
+.animate-core-glow {
+  animation: core-glow 3s ease-in-out infinite;
+}
+
+@keyframes eq-bounce-1 {
+  0%, 100% { height: 6px; }
+  50% { height: 18px; }
+}
+@keyframes eq-bounce-2 {
+  0%, 100% { height: 16px; }
+  50% { height: 7px; }
+}
+@keyframes eq-bounce-3 {
+  0%, 100% { height: 9px; }
+  50% { height: 22px; }
+}
+@keyframes eq-bounce-4 {
+  0%, 100% { height: 17px; }
+  50% { height: 8px; }
+}
+@keyframes eq-bounce-5 {
+  0%, 100% { height: 7px; }
+  50% { height: 15px; }
+}
+
+.animate-eq-1 { animation: eq-bounce-1 1.2s ease-in-out infinite; }
+.animate-eq-2 { animation: eq-bounce-2 0.9s ease-in-out infinite 0.15s; }
+.animate-eq-3 { animation: eq-bounce-3 1.1s ease-in-out infinite 0.3s; }
+.animate-eq-4 { animation: eq-bounce-4 0.95s ease-in-out infinite 0.1s; }
+.animate-eq-5 { animation: eq-bounce-5 1.3s ease-in-out infinite 0.25s; }
+

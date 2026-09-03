@@ -11,6 +11,8 @@ interface ChatHeaderProps {
   onLanguageChange: (lang: Language) => void;
   onBackHome: () => void;
   onOpenMobileSidebar: () => void;
+  onOpenStandards?: () => void;
+  onOpenSettings?: () => void;
   isSidebarCollapsed?: boolean;
   onToggleSidebar?: () => void;
   onClearAllChats?: () => void;
@@ -21,6 +23,8 @@ export function ChatHeader({
   onLanguageChange,
   onBackHome,
   onOpenMobileSidebar,
+  onOpenStandards,
+  onOpenSettings,
   isSidebarCollapsed,
   onToggleSidebar,
   onClearAllChats,
@@ -75,6 +79,7 @@ export function ChatHeader({
 
       {/* Right: Home & Settings Option */}
       <div className="flex items-center gap-2">
+
         {/* Back to Home */}
         <Button
           variant="outline"
@@ -90,22 +95,24 @@ export function ChatHeader({
         <Button
           variant="outline"
           size="sm"
-          onClick={() => setSettingsOpen(true)}
-          className="rounded-xl text-xs font-semibold gap-1.5 h-9 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-sm"
+          onClick={() => (onOpenSettings ? onOpenSettings() : setSettingsOpen(true))}
+          className="rounded-xl text-xs font-semibold gap-1.5 h-9 border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 shadow-sm cursor-pointer"
         >
           <Settings className="w-4 h-4 text-bis-navy dark:text-blue-400" />
           <span>Settings</span>
         </Button>
       </div>
 
-      {/* Settings Dialog Modal */}
-      <SettingsDialog
-        open={settingsOpen}
-        onOpenChange={setSettingsOpen}
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onClearAllChats={onClearAllChats}
-      />
+      {/* Internal Settings Dialog Modal (if not controlled externally) */}
+      {!onOpenSettings && (
+        <SettingsDialog
+          open={settingsOpen}
+          onOpenChange={setSettingsOpen}
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onClearAllChats={onClearAllChats}
+        />
+      )}
     </header>
   );
 }

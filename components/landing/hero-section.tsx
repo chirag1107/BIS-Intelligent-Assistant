@@ -29,7 +29,7 @@ export function HeroSection({ onGetStarted, language }: HeroSectionProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden pt-14 pb-16 px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col justify-center">
+    <section className="relative overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-16 px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col justify-center">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[380px] bg-gradient-to-tr from-blue-100/60 via-amber-50/40 to-slate-100/50 dark:from-blue-950/30 dark:via-slate-900/30 dark:to-transparent rounded-full blur-3xl -z-10 pointer-events-none" />
 
