@@ -710,6 +710,8 @@ function addMessage(type, content, sources, checklist) {
 }
 
 function showTyping() {
+    typingIndicator.removeAttribute("hidden");
+    typingIndicator.hidden = false;
     typingIndicator.classList.remove("hidden");
     typingIndicator.classList.add("active");
     chatMessages.scrollTop = chatMessages.scrollHeight;

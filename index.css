@@ -997,4 +997,26 @@ body {
         font-size: 9px;
     }
 
-    .header-
+    .header-actions {
+        gap: 6px;
+    }
+
+    .header-actions .btn-new-chat span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
